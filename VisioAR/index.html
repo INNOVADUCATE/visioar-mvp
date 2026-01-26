@@ -342,7 +342,8 @@
 
   </div>
 
-  <script>
+  <script type="module">
+    import { renderItem, updatePreview } from "./src/ui/render.js";
     // -----------------------------
     // Datos mínimos (simple, sin JSON por ahora)
     // -----------------------------
@@ -376,9 +377,6 @@
     // UI refs
     const mv = document.getElementById("mv");
     const restName = document.getElementById("restName");
-    const dishName = document.getElementById("dishName");
-    const dishPrice = document.getElementById("dishPrice");
-
     const dishSelect = document.getElementById("dishSelect");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
@@ -388,7 +386,6 @@
 
     const togglePreviewBtn = document.getElementById("togglePreviewBtn");
     const panelBody = document.getElementById("panelBody");
-    const previewImg = document.getElementById("previewImg");
 
     const errorBox = document.getElementById("errorBox");
 
@@ -507,7 +504,7 @@
     function refreshPreview(){
       const item = MENU[index];
       const tex = generateInfoCardTexture(item, fontSelect.value);
-      previewImg.src = tex;
+      updatePreview(tex);
     }
 
     // -----------------------------
@@ -515,9 +512,7 @@
     // -----------------------------
     function render(){
       const item = MENU[index];
-      dishSelect.value = item.slug;
-      dishName.textContent = item.name;
-      dishPrice.textContent = item.price;
+      renderItem(item);
 
       clearError();
 
