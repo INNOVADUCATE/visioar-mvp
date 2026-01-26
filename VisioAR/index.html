@@ -274,8 +274,8 @@
       <div class="top-controls">
         <select id="dishSelect" title="Elegir plato">
           <option value="hamburguesa">Hamburguesa</option>
-          <option value="papafritas">Papas fritas</option>
-          <option value="pizzajamon">Pizza jamón</option>
+          <option value="papas">Papas fritas</option>
+          <option value="pizza">Pizza jamón</option>
         </select>
 
         <button id="toggleCardBtn" class="primary" title="Ficha del plato">Ficha</button>
@@ -293,7 +293,7 @@
     <section class="viewerShell">
       <model-viewer
         id="mv"
-        src="models/demo/hamburguesa.glb"
+        src="./models/demo/hamburguesa.glb"
         ar
         ar-modes="scene-viewer webxr quick-look"
         ar-placement="floor"
@@ -344,34 +344,9 @@
 
   <script>
     // -----------------------------
-    // Datos mínimos (simple, sin JSON por ahora)
+    // Datos del menú (desde menu.json)
     // -----------------------------
-    const MENU = [
-      {
-        slug: "hamburguesa",
-        name: "Hamburguesa Rica Rica",
-        price: "$25.900",
-        weight: "220 g",
-        ingredients: ["Pan brioche tostado","Doble medallón de carne","Cheddar","Lechuga y tomate","Salsa de la casa"],
-        glb: "models/demo/hamburguesa.glb"
-      },
-      {
-        slug: "papafritas",
-        name: "Papas Fritas",
-        price: "$9.900",
-        weight: "180 g",
-        ingredients: ["Papa","Sal","Aceite","Salsa (opcional)"],
-        glb: "models/demo/papafritas.glb"
-      },
-      {
-        slug: "pizzajamon",
-        name: "Pizza Jamón",
-        price: "$19.900",
-        weight: "450 g",
-        ingredients: ["Masa","Salsa","Muzza","Jamón"],
-        glb: "models/demo/pizzajamon.glb"
-      }
-    ];
+    let MENU = [];
 
     // UI refs
     const mv = document.getElementById("mv");
@@ -513,6 +488,10 @@
     // -----------------------------
     // Render plato
     // -----------------------------
+    function setModel(modelPath){
+      mv.src = modelPath;
+    }
+
     function render(){
       const item = MENU[index];
       dishSelect.value = item.slug;
@@ -522,7 +501,7 @@
       clearError();
 
       // Set model (forzamos recarga limpia)
-      mv.src = item.glb;
+      setModel(item.glb);
 
       refreshPreview();
     }
@@ -568,11 +547,17 @@
       setError("No se pudo cargar el modelo 3D. Revisá que el archivo exista en: " + mv.src);
     });
 
+    async function init(){
+      const response = await fetch("./menu.json");
+      MENU = await response.json();
+      render();
+      // En mobile abrimos preview cerrado (no molesta)
+      panelBody.classList.remove("open");
+      togglePreviewBtn.textContent = "Ver";
+    }
+
     // Init
-    render();
-    // En mobile abrimos preview cerrado (no molesta)
-    panelBody.classList.remove("open");
-    togglePreviewBtn.textContent = "Ver";
+    init();
   </script>
 </body>
 </html>
