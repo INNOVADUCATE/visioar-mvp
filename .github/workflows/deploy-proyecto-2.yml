@@ -1,4 +1,4 @@
-name: Deploy PROYECTO 1 to GitHub Pages
+name: Deploy PROYECTO 2 to GitHub Pages
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: PROYECTO 1
+        working-directory: PROYECTO 2
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: PROYECTO 1/package-lock.json
+          cache-dependency-path: PROYECTO 2/package-lock.json
 
       - name: Install dependencies
         run: npm install
@@ -43,7 +43,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: PROYECTO 1/dist
+          path: PROYECTO 2/dist
 
   deploy:
     needs: build

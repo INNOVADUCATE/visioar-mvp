@@ -18,24 +18,3 @@ View your app in AI Studio: https://ai.studio/apps/drive/124GlToX0YhCimyUsQIZWlZ
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
-
-### Test on your phone (local network)
-1. Run `npm run dev` and make sure your phone is on the same Wi‑Fi.
-2. Find your computer's local IP (for example `192.168.0.10`).
-3. Open `http://<IP>:3000/` on your phone.
-
-## Deploy to GitHub Pages (from GitHub directly)
-
-This repository includes a GitHub Actions workflow that builds and deploys the app
-from the `PROYECTO 1` folder to GitHub Pages. The workflow expects a repository
-secret named `GEMINI_API_KEY` and sets `BASE_PATH` automatically for GitHub Pages.
-
-1. Push this repository to GitHub.
-2. In your GitHub repo, go to **Settings → Secrets and variables → Actions** and add:
-   - `GEMINI_API_KEY` with your Gemini API key.
-3. Go to **Settings → Pages** and select **GitHub Actions** as the source.
-4. In the Actions tab, run the **Deploy PROYECTO 1 to GitHub Pages** workflow or push
-   to `main`.
-
-Once deployed, the URL will look like:
-`https://<usuario>.github.io/<repositorio>/`
