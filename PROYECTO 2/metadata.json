@@ -1,7 +1,0 @@
-{
-  "name": "Gourmet AR Menu",
-  "description": "Augmented Reality restaurant menu with dynamic data-driven info cards using model-viewer.",
-  "requestFramePermissions": [
-    "camera"
-  ]
-}

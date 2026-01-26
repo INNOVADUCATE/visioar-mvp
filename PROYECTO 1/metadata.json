@@ -1,8 +1,0 @@
-{
-  "name": "Gourmet AR Experience",
-  "description": "Interactive AR menu for restaurants featuring 3D dishes and dynamic information cards.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
