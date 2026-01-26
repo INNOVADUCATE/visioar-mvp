@@ -9,6 +9,8 @@ export interface Dish {
   weight: string;
   ingredients: string[];
   description?: string;
+  price?: string;
+  imageUrl?: string;
   modelUrl: string; // Path to the GLB file
 }
 
