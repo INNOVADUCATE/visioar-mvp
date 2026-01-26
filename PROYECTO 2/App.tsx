@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import ARScene from './components/ARScene';
 import Controls from './components/Controls';
+import ARCard from './components/ARCard';
 import { BURGER_DISH, DEFAULT_TEXTURE_CONFIG } from './constants';
 import { TextureConfig } from './types';
 import { generateInfoCardTexture } from './services/textureGenerator';
@@ -15,7 +16,7 @@ function App() {
   }, [textureConfig]);
 
   return (
-    <div className="w-full h-screen bg-black overflow-hidden font-sans">
+    <div className="ar-app">
       {/* The 3D/AR View Layer */}
       <ARScene 
         dish={BURGER_DISH}
@@ -24,16 +25,22 @@ function App() {
       />
 
       {/* The UI Overlay Layer */}
-      <Controls 
+      <Controls
         showCard={showCard}
         onToggleCard={() => setShowCard(!showCard)}
         config={textureConfig}
         onConfigChange={setTextureConfig}
         generatedTexturePreview={textureUrl}
       />
-      
+
+      {showCard && (
+        <div className="ar-card-shell">
+          <ARCard dish={BURGER_DISH} />
+        </div>
+      )}
+
       {/* Help Text */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none text-white/50 text-xs text-center z-0">
+      <div className="help-text">
         <p>Gourmet AR Experience v1.0</p>
         <p>Tap 'View in AR' to place the dish.</p>
       </div>
