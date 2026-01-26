@@ -389,6 +389,43 @@ body {
   gap: 0.75rem;
 }
 
+.controls-panel__dish-grid {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.controls-panel__dish-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.controls-panel__dish-button--active {
+  border-color: #d4af37;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.controls-panel__dish-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.controls-panel__dish-price {
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
 .controls-panel__option {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.75rem;

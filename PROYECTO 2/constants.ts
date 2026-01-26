@@ -1,25 +1,68 @@
 import { Dish, FontFamily, TextureConfig } from './types';
 
 // This data would typically come from an API or DB
-export const BURGER_DISH: Dish = {
-  id: 'burger-01',
-  name: 'The Royal Smash',
-  weight: '220 g',
-  ingredients: [
-    'Dry-aged Beef Blend',
-    'Smoked Cheddar',
-    'Caramelized Onions',
-    'Truffle Aioli',
-    'Brioche Bun'
-  ],
-  description: 'Our signature patty, smashed to perfection.',
-  price: '$24.00',
-  imageUrl:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuC4RZrnDuvtL7GBZZESJo10hVcHND5L-RzIEve8a0wTqq8TL-SFve5sTZZhatAzzm1z36-tIL--KOsGWQs2SQso4LtCdwUngP0lL6tBprm_Vf--Ufh696str0odG-R_fvHXBzmP5ZQ3hwrNimax1aReKlbT287nh_KK1tUUaTBELxj3A9cyaoZVhMj0sgWUvSJ9pAbyB41yS5Nqlnbxfze5aYfD52RBNYG5izVVZN7gljLq8z0eaqPUIOOYAm-mAPIYF9JkdIenF_M',
-  // Using a standard placeholder model. In a real scenario, this GLB 
-  // would contain a mesh named "InfoPlane" floating next to the burger.
-  modelUrl: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb' 
-};
+export const DISHES: Dish[] = [
+  {
+    id: 'hamburguesa',
+    name: 'Hamburguesa Clásica',
+    weight: '220 g',
+    ingredients: [
+      'Carne Angus',
+      'Queso Cheddar',
+      'Lechuga Fresca',
+      'Tomate',
+      'Pan Brioche'
+    ],
+    description: 'Sabor clásico con ingredientes frescos y jugosos.',
+    price: '$8.90',
+    imageUrl:
+      'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80',
+    modelUrl: '/models/hamburguesa.glb',
+    badgeLabel: 'Selección de la casa',
+    ctaLabel: 'Ordenar hamburguesa',
+    arLabel: 'Ver hamburguesa en AR'
+  },
+  {
+    id: 'pizza',
+    name: 'Pizza Artesanal',
+    weight: '430 g',
+    ingredients: [
+      'Masa madre',
+      'Salsa de tomate',
+      'Mozzarella',
+      'Albahaca',
+      'Aceite de oliva'
+    ],
+    description: 'Horneada en piedra con masa de fermentación lenta.',
+    price: '$12.50',
+    imageUrl:
+      'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=700&q=80',
+    modelUrl: '/models/pizza.glb',
+    badgeLabel: 'Hecha al horno',
+    ctaLabel: 'Pedir pizza',
+    arLabel: 'Ver pizza en AR'
+  },
+  {
+    id: 'papas',
+    name: 'Papas Crujientes',
+    weight: '180 g',
+    ingredients: [
+      'Papas russet',
+      'Sal marina',
+      'Paprika ahumada',
+      'Ajo',
+      'Perejil'
+    ],
+    description: 'Papas doradas con especias y toque de ajo.',
+    price: '$5.75',
+    imageUrl:
+      'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=700&q=80',
+    modelUrl: '/models/papas.glb',
+    badgeLabel: 'Extra crujiente',
+    ctaLabel: 'Sumar papas',
+    arLabel: 'Ver papas en AR'
+  }
+];
 
 export const DEFAULT_TEXTURE_CONFIG: TextureConfig = {
   fontFamily: FontFamily.MONTSERRAT,

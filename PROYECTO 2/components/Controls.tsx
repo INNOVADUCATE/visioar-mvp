@@ -1,7 +1,10 @@
 import React from 'react';
-import { FontFamily, TextureConfig } from '../types';
+import { Dish, FontFamily, TextureConfig } from '../types';
 
 interface ControlsProps {
+  dishes: Dish[];
+  activeDishId: string;
+  onDishChange: (dishId: string) => void;
   showCard: boolean;
   onToggleCard: () => void;
   config: TextureConfig;
@@ -10,6 +13,9 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({
+  dishes,
+  activeDishId,
+  onDishChange,
   showCard,
   onToggleCard,
   config,
@@ -34,6 +40,25 @@ const Controls: React.FC<ControlsProps> = ({
           >
             {showCard ? 'VISIBLE' : 'HIDDEN'}
           </button>
+        </div>
+
+        <div className="controls-panel__section">
+          <label className="controls-panel__label">Modelo activo</label>
+          <div className="controls-panel__dish-grid">
+            {dishes.map((dish) => (
+              <button
+                key={dish.id}
+                onClick={() => onDishChange(dish.id)}
+                className={`controls-panel__dish-button ${
+                  dish.id === activeDishId ? 'controls-panel__dish-button--active' : ''
+                }`}
+                type="button"
+              >
+                <span className="controls-panel__dish-name">{dish.name}</span>
+                {dish.price && <span className="controls-panel__dish-price">{dish.price}</span>}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="controls-panel__section">

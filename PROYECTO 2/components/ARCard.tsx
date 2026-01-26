@@ -33,7 +33,7 @@ const ARCard: React.FC<ARCardProps> = ({ dish }) => {
         <div className="ar-card__spacer" />
         <ARCardIngredients ingredients={dish.ingredients} />
         <div className="ar-card__spacer" />
-        <ARCardFooter price={dish.price} />
+        <ARCardFooter price={dish.price} ctaLabel={dish.ctaLabel} />
         <div className="ar-card__indicator">
           <span className="material-symbols-outlined">view_in_ar</span>
           <span>AR Preview</span>
