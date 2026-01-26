@@ -72,6 +72,7 @@ const ARScene: React.FC<ARSceneProps> = ({ dish, showCard, textureUrl }) => {
   return (
     <div className="w-full h-full relative bg-gray-900">
       <ModelViewer
+        key={dish.id}
         ref={modelRef}
         src={dish.modelUrl}
         ios-src="" // Add USDZ path here for iOS native quicklook if available
@@ -86,7 +87,7 @@ const ARScene: React.FC<ARSceneProps> = ({ dish, showCard, textureUrl }) => {
         style={{ width: '100%', height: '100%' }}
       >
         <div slot="ar-button" className="absolute bottom-8 right-8 bg-white text-black px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2 cursor-pointer z-50">
-           <span className="text-xl">🧊</span> View in AR
+           <span className="text-xl">🧊</span> {dish.arLabel ?? 'View in AR'}
         </div>
       </ModelViewer>
       

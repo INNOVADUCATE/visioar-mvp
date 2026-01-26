@@ -8,7 +8,7 @@ interface ARCardHeaderProps {
 
 const ARCardHeader: React.FC<ARCardHeaderProps> = ({
   dish,
-  badgeLabel = 'Signature Selection'
+  badgeLabel = dish.badgeLabel ?? 'Signature Selection'
 }) => {
   return (
     <div className="ar-card__header">

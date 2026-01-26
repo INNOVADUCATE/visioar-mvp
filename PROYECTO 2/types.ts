@@ -12,6 +12,9 @@ export interface Dish {
   price?: string;
   imageUrl?: string;
   modelUrl: string; // Path to the GLB file
+  badgeLabel?: string;
+  ctaLabel?: string;
+  arLabel?: string;
 }
 
 export interface TextureConfig {
