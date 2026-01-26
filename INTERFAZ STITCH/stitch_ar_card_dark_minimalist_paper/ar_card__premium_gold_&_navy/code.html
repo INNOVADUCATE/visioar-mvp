@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AR Menu Card - Premium Variant</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#17a1cf",
+              "background-light": "#f6f7f8",
+              "background-dark": "#0a141b", 
+              "navy": "#0d1b2a",
+              "gold-light": "#fceabb",
+              "gold-dark": "#d4af37",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            backgroundImage: {
+                'gold-gradient': 'linear-gradient(135deg, #d4af37 0%, #fceabb 50%, #d4af37 100%)',
+            }
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar hide for cleaner AR look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .gold-border {
+            position: relative;
+            background: linear-gradient(to bottom, #0d1b2a, #0d1b2a);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+        }
+        .gold-border::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #b8860b, #ffd700, #b8860b);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black/80 font-display flex items-center justify-center min-h-screen overflow-hidden relative">
+<!-- AR Camera View Simulation (Background) -->
+<div class="absolute inset-0 w-full h-full z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40 blur-sm" data-alt="blurred restaurant table background representing AR camera view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLIi6UlkwyjNEewewBcesXIwYmIv01BeWNPFtF5tSO4TlUKXgdTal6-8d-qIw7jydfEvQcUEEemdfUgJuJgEbWe8swv15Sim39Iao2uhInVajQ6Af38wCWwbkOLOl456kDMiF_dDcUtnVBK4aJcbChCiJingjBiodUBCtDAd-_WG5rRstFAMyIgQSXn2v3dhrvfJPK49SNvxAJs5BZHkcHaF92F0EmJ1LEh3_E8Rs_pupwBVuWEoZHt5ZwIoAOy-gaEOmWo9Awhxk');"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
+</div>
+<!-- Main Card Container -->
+<main class="relative z-10 w-full max-w-md h-[90vh] flex flex-col p-6">
+<!-- Premium Card -->
+<div class="gold-border flex-1 flex flex-col relative shadow-2xl overflow-hidden">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 z-20 p-2 rounded-full bg-navy/50 text-gold-light border border-gold-dark/30 hover:bg-gold-dark hover:text-navy transition-colors">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+<!-- Content Scroll Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar flex flex-col items-center pt-12 pb-24 px-6 text-center">
+<!-- Decorative Top Element -->
+<div class="w-16 h-1 bg-gold-gradient mb-8 rounded-full opacity-80"></div>
+<!-- Title Section -->
+<div class="space-y-4 mb-10">
+<h2 class="text-white/60 text-xs font-bold tracking-[0.3em] uppercase">Chef's Selection</h2>
+<h1 class="text-white text-3xl md:text-4xl font-extrabold tracking-tight leading-tight" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                        THE <br/>
+<span class="text-transparent bg-clip-text bg-gold-gradient">SIGNATURE</span> <br/>
+                        BURGER
+                    </h1>
+<div class="flex items-center justify-center gap-2">
+<span class="h-[1px] w-8 bg-gold-dark/50"></span>
+<p class="text-gold-light text-lg font-bold tracking-widest">210g</p>
+<span class="h-[1px] w-8 bg-gold-dark/50"></span>
+</div>
+</div>
+<!-- Image / 3D Placeholder -->
+<div class="relative w-full aspect-square max-w-[280px] mb-8 group cursor-pointer">
+<div class="absolute inset-0 rounded-full bg-gold-dark/10 blur-xl animate-pulse"></div>
+<div class="relative z-10 w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10" data-alt="Gourmet burger on a dark plate close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8d6kXVtH05pcdfm88BpjXR82b3TYQHnZP1qqEKYVLQgRFZvv_DENSNCokvE7WzOp3ZoAHaa6TqcXjeiK9ZXnPRovts5oc7zai2c7aoxQ5B3FD6w9FgfyutLArtL0TLROtnVwG_E74JxlB5du9oYm6Kx3KaOGYNXM2QZW1LePkn08CYmRAm7NQEjl_1Iz0Mmp41pylDfkaAg6qJc_odE_gCpZZPW0U3Tuvs3n1ykBlDhsXWRDTsoU6RMbZQQywY2g3UPvmduIzWz0'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent"></div>
+<!-- 3D Indicator Icon overlay -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-white/20">
+<span class="material-symbols-outlined text-white text-sm">view_in_ar</span>
+<span class="text-white text-xs font-medium tracking-wide">3D View</span>
+</div>
+</div>
+</div>
+<!-- Ingredients List (Poetic Layout) -->
+<div class="space-y-6 w-full max-w-xs mb-8">
+<div class="flex flex-col gap-3 text-white/90 text-sm md:text-base font-medium leading-relaxed tracking-wide">
+<p>Premium Wagyu Beef Patty</p>
+<span class="text-gold-dark text-[10px] opacity-60">♦</span>
+<p>Caramelized Shallots &amp; Thyme</p>
+<span class="text-gold-dark text-[10px] opacity-60">♦</span>
+<p>Black Truffle Aioli</p>
+<span class="text-gold-dark text-[10px] opacity-60">♦</span>
+<p>Aged Sharp Cheddar</p>
+<span class="text-gold-dark text-[10px] opacity-60">♦</span>
+<p>Toasted Brioche Bun</p>
+</div>
+</div>
+<!-- Nutrition/Meta info subtle -->
+<div class="grid grid-cols-3 gap-4 w-full border-t border-gold-dark/20 pt-6 mb-4">
+<div class="text-center">
+<p class="text-white/40 text-[10px] uppercase tracking-wider mb-1">Calories</p>
+<p class="text-white/80 text-sm font-semibold">850</p>
+</div>
+<div class="text-center border-l border-r border-gold-dark/20">
+<p class="text-white/40 text-[10px] uppercase tracking-wider mb-1">Prep Time</p>
+<p class="text-white/80 text-sm font-semibold">15m</p>
+</div>
+<div class="text-center">
+<p class="text-white/40 text-[10px] uppercase tracking-wider mb-1">Origin</p>
+<p class="text-white/80 text-sm font-semibold">Japan</p>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-navy via-navy/95 to-transparent z-10">
+<div class="flex items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="text-white/50 text-xs uppercase tracking-wider mb-1">Total Price</span>
+<span class="text-2xl font-bold text-white">$24.00</span>
+</div>
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span>Add to Order</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- AR Instructions / Context -->
+<div class="mt-4 flex justify-center">
+<div class="bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-white/70 text-sm animate-bounce">smartphone</span>
+<p class="text-white/70 text-xs font-medium">Move phone to explore in 3D</p>
+</div>
+</div>
+</main>
+</body></html>
