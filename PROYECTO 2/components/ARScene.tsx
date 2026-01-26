@@ -30,16 +30,23 @@ const ARScene: React.FC<ARSceneProps> = ({ dish, showCard, textureUrl }) => {
             // Create a texture from the Data URL
             const texture = await modelViewer.createTexture(textureUrl);
             
+            // Restore base color factor before applying visibility settings
+            material.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, 1]);
+            
             // Apply to base color
             material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
             
-            // Ensure alpha mode is opaque or mask based on need
+            // Ensure alpha mode is opaque or mask based on need (set after base color)
             material.setAlphaMode('OPAQUE'); 
             
             // Emissive makes it visible in low light AR
             material.emissiveFactor = [0.2, 0.2, 0.2];
             material.emissiveTexture.setTexture(texture);
         } else {
+            // Clear emissive state to avoid lingering glow when hidden
+            material.emissiveFactor = [0, 0, 0];
+            material.emissiveTexture.setTexture(null);
+            
             // To hide it, we could set alpha to 0 or move it. 
             // Setting base color to transparent:
             material.pbrMetallicRoughness.setBaseColorFactor([0, 0, 0, 0]);
