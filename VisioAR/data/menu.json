@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "hamburguesa",
+    "name": "Hamburguesa Rica Rica",
+    "price": "$25.900",
+    "weight": "220 g",
+    "ingredients": [
+      "Pan brioche tostado",
+      "Doble medallón de carne",
+      "Cheddar",
+      "Lechuga y tomate",
+      "Salsa de la casa"
+    ],
+    "glb": "./models/demo/hamburguesa.glb"
+  },
+  {
+    "slug": "papafritas",
+    "name": "Papas Fritas",
+    "price": "$9.900",
+    "weight": "180 g",
+    "ingredients": [
+      "Papa",
+      "Sal",
+      "Aceite",
+      "Salsa (opcional)"
+    ],
+    "glb": "./models/demo/papafritas.glb"
+  },
+  {
+    "slug": "pizzajamon",
+    "name": "Pizza Jamón",
+    "price": "$19.900",
+    "weight": "450 g",
+    "ingredients": [
+      "Masa",
+      "Salsa",
+      "Muzza",
+      "Jamón"
+    ],
+    "glb": "./models/demo/pizzajamon.glb"
+  }
+]
