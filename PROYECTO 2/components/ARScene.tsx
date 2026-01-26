@@ -1,25 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Dish, TextureConfig } from '../types';
-import { generateInfoCardTexture } from '../services/textureGenerator';
+import React, { useEffect, useRef } from 'react';
+import { Dish } from '../types';
 import { INFO_CARD_MATERIAL_NAME } from '../constants';
 
 interface ARSceneProps {
   dish: Dish;
-  config: TextureConfig;
   showCard: boolean;
+  textureUrl: string;
 }
 
-const ARScene: React.FC<ARSceneProps> = ({ dish, config, showCard }) => {
+const ARScene: React.FC<ARSceneProps> = ({ dish, showCard, textureUrl }) => {
   const modelRef = useRef<HTMLElement>(null);
-  const [textureUrl, setTextureUrl] = useState<string | null>(null);
 
-  // 1. Generate the texture whenever data or config changes
-  useEffect(() => {
-    const url = generateInfoCardTexture(dish, config);
-    setTextureUrl(url);
-  }, [dish, config]);
-
-  // 2. Apply texture to the model
+  // Apply texture to the model
   useEffect(() => {
     if (!modelRef.current || !textureUrl) return;
 

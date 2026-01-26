@@ -10,7 +10,7 @@ function App() {
   const [textureConfig, setTextureConfig] = useState<TextureConfig>(DEFAULT_TEXTURE_CONFIG);
 
   // Generate a preview URL for the UI so the user can see what the AR card will look like
-  const previewUrl = useMemo(() => {
+  const textureUrl = useMemo(() => {
     return generateInfoCardTexture(BURGER_DISH, textureConfig);
   }, [textureConfig]);
 
@@ -18,9 +18,9 @@ function App() {
     <div className="w-full h-screen bg-black overflow-hidden font-sans">
       {/* The 3D/AR View Layer */}
       <ARScene 
-        dish={BURGER_DISH} 
-        config={textureConfig}
+        dish={BURGER_DISH}
         showCard={showCard}
+        textureUrl={textureUrl}
       />
 
       {/* The UI Overlay Layer */}
@@ -29,7 +29,7 @@ function App() {
         onToggleCard={() => setShowCard(!showCard)}
         config={textureConfig}
         onConfigChange={setTextureConfig}
-        generatedTexturePreview={previewUrl}
+        generatedTexturePreview={textureUrl}
       />
       
       {/* Help Text */}
