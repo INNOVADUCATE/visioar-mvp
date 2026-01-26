@@ -11,7 +11,7 @@
       "Lechuga y tomate",
       "Salsa de la casa"
     ],
-    "glb": "models/demo/hamburguesa.glb"
+    "glb": "./models/demo/hamburguesa.glb"
   },
   {
     "slug": "papafritas",
@@ -24,7 +24,7 @@
       "Aceite",
       "Salsa (opcional)"
     ],
-    "glb": "models/demo/papafritas.glb"
+    "glb": "./models/demo/papafritas.glb"
   },
   {
     "slug": "pizzajamon",
@@ -37,6 +37,6 @@
       "Muzza",
       "Jamón"
     ],
-    "glb": "models/demo/pizzajamon.glb"
+    "glb": "./models/demo/pizzajamon.glb"
   }
 ]
