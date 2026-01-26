@@ -19,10 +19,18 @@ View your app in AI Studio: https://ai.studio/apps/drive/1Rr0XvrefN3tQwOWAHEaCKx
 3. Run the app:
    `npm run dev`
 
-### Test on your phone (local network)
+### Switch between experiences (merged MVP)
+Use the **Modo** toggle in the top-left corner to switch between:
+- **Experiencia v2** (current showcase)
+- **MVP histórico** (original prototype merged into this app)
+
+### Test on your phone (local network / public IP)
 1. Run `npm run dev` and make sure your phone is on the same Wi‑Fi.
 2. Find your computer's local IP (for example `192.168.0.10`).
 3. Open `http://<IP>:3000/` on your phone.
+
+If you need a public IP, expose port `3000` in your router/firewall and use that
+public IP instead of the local one.
 
 ## Deploy to GitHub Pages (from GitHub directly)
 
