@@ -1,25 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Dish, TextureConfig } from '../types';
-import { generateInfoCardTexture } from '../services/textureGenerator';
+import React, { useEffect, useRef } from 'react';
+import { Dish } from '../types';
 import { INFO_CARD_MATERIAL_NAME } from '../constants';
 
 interface ARSceneProps {
   dish: Dish;
-  config: TextureConfig;
   showCard: boolean;
+  textureUrl: string;
 }
 
-const ARScene: React.FC<ARSceneProps> = ({ dish, config, showCard }) => {
+const ARScene: React.FC<ARSceneProps> = ({ dish, showCard, textureUrl }) => {
   const modelRef = useRef<HTMLElement>(null);
-  const [textureUrl, setTextureUrl] = useState<string | null>(null);
 
-  // 1. Generate the texture whenever data or config changes
-  useEffect(() => {
-    const url = generateInfoCardTexture(dish, config);
-    setTextureUrl(url);
-  }, [dish, config]);
-
-  // 2. Apply texture to the model
+  // Apply texture to the model
   useEffect(() => {
     if (!modelRef.current || !textureUrl) return;
 
@@ -38,16 +30,23 @@ const ARScene: React.FC<ARSceneProps> = ({ dish, config, showCard }) => {
             // Create a texture from the Data URL
             const texture = await modelViewer.createTexture(textureUrl);
             
+            // Restore base color factor before applying visibility settings
+            material.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, 1]);
+            
             // Apply to base color
             material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
             
-            // Ensure alpha mode is opaque or mask based on need
+            // Ensure alpha mode is opaque or mask based on need (set after base color)
             material.setAlphaMode('OPAQUE'); 
             
             // Emissive makes it visible in low light AR
             material.emissiveFactor = [0.2, 0.2, 0.2];
             material.emissiveTexture.setTexture(texture);
         } else {
+            // Clear emissive state to avoid lingering glow when hidden
+            material.emissiveFactor = [0, 0, 0];
+            material.emissiveTexture.setTexture(null);
+            
             // To hide it, we could set alpha to 0 or move it. 
             // Setting base color to transparent:
             material.pbrMetallicRoughness.setBaseColorFactor([0, 0, 0, 0]);
