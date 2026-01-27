@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>VisioAR • Menú 3D + AR</title>
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logoWrap">
+        <img class="logo" src="./assets/logo.png" alt="Logo" />
+      </div>
+      <div class="brandText">
+        <div class="brandTitle" id="restaurantName">Restaurante Demo</div>
+        <div class="brandSub">VisioAR • Menú 3D + AR</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <select id="fontSelect" class="select">
+        <option value="system">Sistema</option>
+        <option value="calibri" selected>Calibri</option>
+        <option value="inter">Inter</option>
+      </select>
+
+      <button id="toggleCardBtn" class="btn btnGhost" type="button">
+        Ver ficha del plato
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="dishHeader">
+      <h1 id="dishName" class="dishTitle">Cargando…</h1>
+      <div id="dishPrice" class="dishPrice"></div>
+      <p id="dishDesc" class="dishDesc"></p>
+    </section>
+
+    <section class="viewerShell" aria-label="Visor 3D">
+      <model-viewer
+        id="mv"
+        src="./models/demo/hamburguesa.glb"
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1"
+        camera-orbit="0deg 75deg 1.3m"
+        field-of-view="30deg"
+        ar-scale="fixed"
+        alt="Plato en 3D">
+
+        <button slot="ar-button" class="arBtn" type="button">👀 Ver en mi espacio</button>
+      </model-viewer>
+
+      <div class="hintRow">
+        <div class="navBtns">
+          <button id="prevBtn" class="btn" type="button">← Anterior</button>
+          <button id="nextBtn" class="btn" type="button">Siguiente →</button>
+        </div>
+        <div class="tipPill">Tip: en AR, buscá buena luz para legibilidad.</div>
+      </div>
+
+      <div id="errorBox" class="errorBox hidden"></div>
+    </section>
+
+    <section class="notes">
+      <p class="note">
+        Si tu teléfono no soporta AR, igual podés rotar y ver el plato en 3D desde el navegador.
+      </p>
+      <p class="note">
+        Nota técnica: si el GLB/USDZ incluye una malla/plano para “ficha” (ej: material <b>InfoCardMat</b>),
+        la app puede inyectar la textura de la ficha. Si no, igual vas a ver la ficha como overlay.
+      </p>
+    </section>
+
+    <!-- Overlay ficha -->
+    <div id="cardOverlay" class="cardOverlay hidden" role="dialog" aria-modal="true">
+      <div class="cardPanel">
+        <div class="cardTop">
+          <div class="cardTitle" id="cardTitle">Ficha del plato</div>
+          <button id="closeCardBtn" class="iconBtn" type="button" aria-label="Cerrar">✕</button>
+        </div>
+
+        <div class="cardBody">
+          <div class="pill" id="cardWeight"></div>
+          <div class="cardSectionTitle">Ingredientes</div>
+          <ul id="cardIngredients" class="cardList"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

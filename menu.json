@@ -1,0 +1,49 @@
+
+{
+  "restaurant": "Restaurante Demo",
+  "items": [
+    {
+      "id": "hamburguesa",
+      "name": "Hamburguesa Rica Rica",
+      "price": 25900,
+      "desc": "Colocá el plato en tu mesa/piso con AR. Luego activá la ficha para ver ingredientes y peso.",
+      "model": "./models/demo/hamburguesa.glb",
+      "weight": "Peso: 220 g",
+      "ingredients": [
+        "Pan brioche tostado",
+        "Doble medallón de carne",
+        "Cheddar",
+        "Lechuga y tomate",
+        "Salsa de la casa"
+      ]
+    },
+    {
+      "id": "papafritas",
+      "name": "Papas Fritas Clásicas",
+      "price": 9900,
+      "desc": "Papas doradas y crocantes.",
+      "model": "./models/demo/papafritas.glb",
+      "weight": "Peso: 180 g",
+      "ingredients": [
+        "Papa",
+        "Sal",
+        "Aceite"
+      ]
+    },
+    {
+      "id": "pizzajamon",
+      "name": "Pizza Jamón y Queso",
+      "price": 18900,
+      "desc": "Porción generosa, ideal para compartir.",
+      "model": "./models/demo/pizzajamon.glb",
+      "weight": "Peso: 320 g",
+      "ingredients": [
+        "Masa",
+        "Salsa de tomate",
+        "Mozzarella",
+        "Jamón",
+        "Orégano"
+      ]
+    }
+  ]
+}
