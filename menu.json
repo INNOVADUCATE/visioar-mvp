@@ -1,6 +1,13 @@
 
 {
   "restaurant": "Restaurante Demo",
+  "viewerDefaults": {
+    "cameraOrbit": "0deg 75deg 1.3m",
+    "fieldOfView": "30deg",
+    "scale": "1 1 1",
+    "autoRotate": true,
+    "shadowIntensity": 1
+  },
   "items": [
     {
       "id": "hamburguesa",
@@ -8,6 +15,9 @@
       "price": 25900,
       "desc": "Colocá el plato en tu mesa/piso con AR. Luego activá la ficha para ver ingredientes y peso.",
       "model": "./models/demo/hamburguesa.glb",
+      "viewer": {
+        "scale": "0.9 0.9 0.9"
+      },
       "weight": "Peso: 220 g",
       "ingredients": [
         "Pan brioche tostado",
@@ -23,6 +33,10 @@
       "price": 9900,
       "desc": "Papas doradas y crocantes.",
       "model": "./models/demo/papafritas.glb",
+      "viewer": {
+        "scale": "1.15 1.15 1.15",
+        "cameraOrbit": "0deg 70deg 1.45m"
+      },
       "weight": "Peso: 180 g",
       "ingredients": [
         "Papa",
@@ -36,6 +50,10 @@
       "price": 18900,
       "desc": "Porción generosa, ideal para compartir.",
       "model": "./models/demo/pizzajamon.glb",
+      "viewer": {
+        "scale": "1 1 1",
+        "cameraOrbit": "0deg 75deg 1.6m"
+      },
       "weight": "Peso: 320 g",
       "ingredients": [
         "Masa",
