@@ -75,17 +75,29 @@ function fillHeader(item){
 }
 
 function setModel(item){
+  if (!item) return;
+
   hideError();
 
-  // Ruta del modelo (relativa y simple)
+  const cfg = MENU?.viewerDefaults || {};
+  const v = item.viewer || {};
+
+  const scale = v.scale || cfg.scale || "1 1 1";
+  const orbit = v.cameraOrbit || cfg.cameraOrbit || "0deg 75deg 1.3m";
+  const fov = v.fieldOfView || cfg.fieldOfView || "30deg";
+  const autoRotate = (typeof v.autoRotate === "boolean") ? v.autoRotate : (cfg.autoRotate !== false);
+  const shadowIntensity = (typeof v.shadowIntensity === "number") ? v.shadowIntensity : (cfg.shadowIntensity ?? 1);
+
+  // Model
   mv.src = item.model;
+  mv.alt = item.name || "Plato 3D";
+  mv.setAttribute("scale", scale);
+  mv.setAttribute("camera-orbit", orbit);
+  mv.setAttribute("field-of-view", fov);
+  mv.setAttribute("shadow-intensity", String(shadowIntensity));
 
-  // Si querés “forzar escala” (para que el plato no se vea gigante/chico):
-  // Ajustá estos valores cuando pruebes:
-  mv.setAttribute("scale", "1 1 1"); // ej: "0.8 0.8 0.8" o "1.2 1.2 1.2"
-
-  // Y la distancia de cámara:
-  mv.setAttribute("camera-orbit", "0deg 75deg 1.3m");
+  if (autoRotate) mv.setAttribute("auto-rotate", "");
+  else mv.removeAttribute("auto-rotate");
 
   // Si falla carga del modelo
   const onError = () => {
@@ -93,12 +105,14 @@ function setModel(item){
   };
 
   mv.addEventListener("error", onError, { once:true });
+
+  // Header / overlay
+  fillHeader(item);
+  fillCard(item);
 }
 
 function render(){
   const item = MENU.items[idx];
-  fillHeader(item);
-  fillCard(item);
   setModel(item);
 }
 
