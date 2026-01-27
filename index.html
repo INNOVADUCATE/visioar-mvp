@@ -96,6 +96,41 @@
         </div>
       </div>
     </div>
+
+    <!-- Admin drawer -->
+    <aside id="adminDrawer" class="adminDrawer hidden" aria-hidden="true">
+      <div class="adminHeader">
+        <div class="adminTitleWrap">
+          <div class="adminTitle">Admin Mode</div>
+          <span id="adminStatusPill" class="adminStatus adminStatusOk">OK</span>
+        </div>
+        <button id="adminCloseBtn" class="iconBtn" type="button" aria-label="Cerrar Admin">✕</button>
+      </div>
+
+      <div class="adminBody">
+        <label class="adminLabel" for="adminJson">menu.json</label>
+        <textarea id="adminJson" class="adminEditor" spellcheck="false"></textarea>
+        <div class="adminMeta">
+          <label class="adminToggle">
+            <input id="adminAutoApply" type="checkbox" />
+            Auto-apply (800ms)
+          </label>
+          <span id="adminLastSource" class="adminSource">BASE_MENU</span>
+        </div>
+        <div class="adminValidation">
+          <div class="adminLabel">Validación</div>
+          <ul id="adminValidationList" class="adminValidationList"></ul>
+        </div>
+      </div>
+
+      <div class="adminFooter">
+        <button id="adminApplyBtn" class="btn" type="button">Apply</button>
+        <button id="adminRevertBtn" class="btn btnGhost" type="button">Revert</button>
+        <button id="adminClearBtn" class="btn btnGhost" type="button">Clear</button>
+        <button id="adminExportBtn" class="btn" type="button">Publish</button>
+        <button id="adminCopyBtn" class="btn btnGhost" type="button">Copy</button>
+      </div>
+    </aside>
   </main>
 
   <script src="./app.js"></script>
