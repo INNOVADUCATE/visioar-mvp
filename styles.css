@@ -185,6 +185,11 @@ body{
   box-shadow: var(--shadow);
   overflow:hidden;
 }
+.viewerActions{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom: 10px;
+}
 
 model-viewer{
   width: 100%;
