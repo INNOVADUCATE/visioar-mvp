@@ -129,7 +129,11 @@ function setModel(item){
   const cfg = MENU?.viewerDefaults || {};
   const v = item.viewer || {};
 
-  const scale = v.scale || cfg.scale || "1 1 1";
+  // viewer.arScale: "fixed" | "auto" (controla escala en AR)
+  // viewer.realScale: true fuerza escala "1 1 1" y usa ar-scale="fixed".
+  const realScale = (typeof v.realScale === "boolean") ? v.realScale : (cfg.realScale === true);
+  const arScale = v.arScale || cfg.arScale || (realScale ? "fixed" : null);
+  const scale = realScale ? "1 1 1" : (v.scale || cfg.scale || "1 1 1");
   const orbit = v.cameraOrbit || cfg.cameraOrbit || "0deg 75deg 1.3m";
   const fov = v.fieldOfView || cfg.fieldOfView || "30deg";
   const autoRotate = (typeof v.autoRotate === "boolean") ? v.autoRotate : (cfg.autoRotate !== false);
@@ -142,6 +146,8 @@ function setModel(item){
   mv.setAttribute("camera-orbit", orbit);
   mv.setAttribute("field-of-view", fov);
   mv.setAttribute("shadow-intensity", String(shadowIntensity));
+  if (arScale) mv.setAttribute("ar-scale", arScale);
+  else mv.removeAttribute("ar-scale");
 
   if (autoRotate) mv.setAttribute("auto-rotate", "");
   else mv.removeAttribute("auto-rotate");
@@ -271,6 +277,15 @@ function validateMenuSchema(menu){
       }
       if (viewer.autoRotate != null && typeof viewer.autoRotate !== "boolean") {
         warnings.push(`items[${index}].viewer.autoRotate debería ser boolean.`);
+      }
+      if (viewer.arScale && !["fixed", "auto"].includes(viewer.arScale)) {
+        warnings.push(`items[${index}].viewer.arScale debería ser "fixed" o "auto".`);
+      }
+      if (viewer.realScale != null && typeof viewer.realScale !== "boolean") {
+        warnings.push(`items[${index}].viewer.realScale debería ser boolean.`);
+      }
+      if (viewer.realScale === true && viewer.arScale && viewer.arScale !== "fixed") {
+        warnings.push(`items[${index}].viewer.realScale=true recomienda viewer.arScale="fixed".`);
       }
     });
   }
