@@ -88,6 +88,81 @@ body{
   padding: 18px 12px 40px;
 }
 
+.landingView{
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 28px 16px 12px;
+}
+.landingHero{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.landingHero h1{
+  margin: 0 0 8px;
+  font-size: clamp(24px, 5vw, 36px);
+}
+.landingHero p{
+  margin: 0 auto;
+  color: var(--muted);
+  max-width: 52ch;
+}
+.landingGrid{
+  display:grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.landingCard{
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(18,24,40,.82), rgba(10,12,20,.78));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  min-height: 210px;
+}
+.landingCardHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+}
+.landingCard h2{
+  margin: 0;
+  font-size: 18px;
+}
+.landingTag{
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(210,168,90,.35);
+  color: rgba(210,168,90,.9);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.landingCard p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.landingActions{
+  margin-top: auto;
+  display:flex;
+  gap: 10px;
+}
+.btnPrimary{
+  background: linear-gradient(135deg, rgba(210,168,90,.35), rgba(210,168,90,.15));
+  border-color: rgba(210,168,90,.6);
+  color: #fff;
+  font-weight: 700;
+}
+.btnPrimary:hover{
+  background: linear-gradient(135deg, rgba(210,168,90,.5), rgba(210,168,90,.22));
+}
+
 .dishHeader{padding: 6px 2px 14px}
 .dishTitle{
   margin: 14px 0 6px;
