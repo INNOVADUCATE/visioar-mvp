@@ -39,6 +39,7 @@ const ADMIN_STORAGE_KEY = "visioar_admin_menu_override";
 
 let MENU = null;
 let BASE_MENU = null;
+let RESTAURANT = null;
 let idx = 0;
 let adminMode = false;
 let lastValidation = { errors: [], warnings: [] };
@@ -414,11 +415,26 @@ function updateAdminUrl(enabled){
   window.history.replaceState({}, "", url.toString());
 }
 
-async function loadMenu(){
-  const res = await fetch("./menu.json", { cache: "no-store" });
-  if (!res.ok) throw new Error("No se pudo leer menu.json");
+async function loadRestaurants(){
+  const res = await fetch("./restaurants.json", { cache: "no-store" });
+  if (!res.ok) throw new Error("No se pudo leer restaurants.json");
   const data = await res.json();
-  if (!data.items || !data.items.length) throw new Error("menu.json no tiene items");
+  if (!Array.isArray(data.restaurants) || data.restaurants.length === 0) {
+    throw new Error("restaurants.json no tiene restaurantes");
+  }
+  return data.restaurants;
+}
+
+function findRestaurant(restaurants, id){
+  return restaurants.find((restaurant) => restaurant.id === id);
+}
+
+async function loadMenu(menuPath){
+  const res = await fetch(menuPath, { cache: "no-store" });
+  if (!res.ok) throw new Error(`No se pudo leer el menú en ${menuPath}`);
+  const data = await res.json();
+  if (!data.items || !data.items.length) throw new Error("El menú no tiene items");
+  if (RESTAURANT?.name) data.restaurant = RESTAURANT.name;
   BASE_MENU = data;
   applyMenu(BASE_MENU, { source: "BASE_MENU", shouldRender: false });
 
@@ -486,7 +502,10 @@ function bindUI(){
     if (!hasRestaurant) return;
 
     adminMode = isAdminMode();
-    await loadMenu();
+    const restaurants = await loadRestaurants();
+    RESTAURANT = findRestaurant(restaurants, restaurantParam);
+    if (!RESTAURANT) throw new Error("Restaurante no encontrado");
+    await loadMenu(RESTAURANT.menu);
     bindUI();
     if (adminMode) {
       openAdminDrawer();
@@ -495,6 +514,6 @@ function bindUI(){
     render();
   }catch(err){
     console.error(err);
-    showError("Error inicializando el menú. Revisá menu.json y rutas.");
+    showError("Error inicializando el menú. Revisá restaurants.json y rutas.");
   }
 })();

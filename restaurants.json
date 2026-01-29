@@ -1,0 +1,25 @@
+{
+  "restaurants": [
+    {
+      "id": "la-fogata",
+      "name": "La Fogata",
+      "tagline": "Parrilla con cortes premium y clásicos argentinos.",
+      "logo": "./assets/logo.png",
+      "menu": "./restaurants/demo/menu.json"
+    },
+    {
+      "id": "casa-nube",
+      "name": "Casa Nube",
+      "tagline": "Sabores de temporada con presentaciones minimalistas.",
+      "logo": "./assets/logo.png",
+      "menu": "./restaurants/demo/menu.json"
+    },
+    {
+      "id": "mar-tierra",
+      "name": "Mar y Tierra",
+      "tagline": "Fusión marina con la potencia de la tierra.",
+      "logo": "./assets/logo.png",
+      "menu": "./restaurants/demo/menu.json"
+    }
+  ]
+}
