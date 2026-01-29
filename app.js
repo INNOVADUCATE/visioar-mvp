@@ -7,6 +7,7 @@ const toggleCardBtn = $("#toggleCardBtn");
 const closeCardBtn = $("#closeCardBtn");
 const cardOverlay = $("#cardOverlay");
 const errorBox = $("#errorBox");
+const backToRestaurantsBtn = $("#backToRestaurantsBtn");
 
 const restaurantName = $("#restaurantName");
 const dishName = $("#dishName");
@@ -49,6 +50,11 @@ let autoApplyTimer = null;
 function getRestaurantParam(){
   const params = new URLSearchParams(window.location.search);
   return params.get("r");
+}
+
+function getItemParam(){
+  const params = new URLSearchParams(window.location.search);
+  return params.get("item");
 }
 
 function getAdminStorageKey(restaurantId = RESTAURANT?.id){
@@ -158,6 +164,37 @@ function setModel(item){
 function render(){
   const item = MENU.items[idx];
   setModel(item);
+  updateItemParam(item?.id);
+}
+
+function updateItemParam(itemId){
+  const url = new URL(window.location.href);
+  if (itemId) url.searchParams.set("item", itemId);
+  else url.searchParams.delete("item");
+  window.history.replaceState({}, "", url.toString());
+}
+
+function setIdxFromItemParam(){
+  const itemParam = getItemParam();
+  if (!itemParam || !MENU?.items?.length) return;
+  const nextIdx = MENU.items.findIndex((item) => item.id === itemParam);
+  if (nextIdx >= 0) idx = nextIdx;
+}
+
+function clearRestaurantSelection({ reload = false } = {}){
+  const url = new URL(window.location.href);
+  url.searchParams.delete("r");
+  url.searchParams.delete("item");
+  url.searchParams.delete("admin");
+  if (reload) {
+    window.location.href = url.toString();
+    return;
+  }
+  window.history.pushState({}, "", url.toString());
+  syncViewMode(false);
+  closeCard();
+  hideError();
+  if (adminMode) setAdminMode(false);
 }
 
 function isAdminMode(){
@@ -465,6 +502,8 @@ async function loadMenu(menuPath){
       }
     }
   }
+
+  setIdxFromItemParam();
 }
 
 function bindUI(){
@@ -482,6 +521,10 @@ function bindUI(){
   cardOverlay.addEventListener("click", (e) => {
     if (e.target === cardOverlay) closeCard();
   });
+
+  if (backToRestaurantsBtn) {
+    backToRestaurantsBtn.addEventListener("click", () => clearRestaurantSelection());
+  }
 
   fontSelect.addEventListener("change", () => setFont(fontSelect.value));
   setFont(fontSelect.value);
