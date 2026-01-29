@@ -19,6 +19,9 @@ const cardIngredients = $("#cardIngredients");
 
 const fontSelect = $("#fontSelect");
 
+const landingView = document.querySelector(".landingView");
+const appView = document.querySelector(".appView");
+
 const adminDrawer = $("#adminDrawer");
 const adminStatusPill = $("#adminStatusPill");
 const adminCloseBtn = $("#adminCloseBtn");
@@ -41,6 +44,17 @@ let adminMode = false;
 let lastValidation = { errors: [], warnings: [] };
 let lastModelWarning = null;
 let autoApplyTimer = null;
+
+function getRestaurantParam(){
+  const params = new URLSearchParams(window.location.search);
+  return params.get("r");
+}
+
+function syncViewMode(hasRestaurant){
+  if (!landingView || !appView) return;
+  landingView.classList.toggle("hidden", hasRestaurant);
+  appView.classList.toggle("hidden", !hasRestaurant);
+}
 
 function formatARS(value){
   try {
@@ -466,6 +480,11 @@ function bindUI(){
 
 (async function init(){
   try{
+    const restaurantParam = getRestaurantParam();
+    const hasRestaurant = Boolean(restaurantParam);
+    syncViewMode(hasRestaurant);
+    if (!hasRestaurant) return;
+
     adminMode = isAdminMode();
     await loadMenu();
     bindUI();
