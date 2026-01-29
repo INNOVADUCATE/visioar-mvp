@@ -35,7 +35,7 @@ const adminCopyBtn = $("#adminCopyBtn");
 const adminAutoApply = $("#adminAutoApply");
 const adminLastSource = $("#adminLastSource");
 
-const ADMIN_STORAGE_KEY = "visioar_admin_menu_override";
+const ADMIN_STORAGE_KEY_PREFIX = "visioar_admin_menu_override";
 
 let MENU = null;
 let BASE_MENU = null;
@@ -49,6 +49,11 @@ let autoApplyTimer = null;
 function getRestaurantParam(){
   const params = new URLSearchParams(window.location.search);
   return params.get("r");
+}
+
+function getAdminStorageKey(restaurantId = RESTAURANT?.id){
+  if (!restaurantId) return null;
+  return `${ADMIN_STORAGE_KEY_PREFIX}__${restaurantId}`;
 }
 
 function syncViewMode(hasRestaurant){
@@ -289,15 +294,21 @@ function setEditorValue(value){
 }
 
 function getStoredOverride(){
-  return localStorage.getItem(ADMIN_STORAGE_KEY);
+  const key = getAdminStorageKey();
+  if (!key) return null;
+  return localStorage.getItem(key);
 }
 
 function storeOverride(raw){
-  localStorage.setItem(ADMIN_STORAGE_KEY, raw);
+  const key = getAdminStorageKey();
+  if (!key) return;
+  localStorage.setItem(key, raw);
 }
 
 function clearOverride(){
-  localStorage.removeItem(ADMIN_STORAGE_KEY);
+  const key = getAdminStorageKey();
+  if (!key) return;
+  localStorage.removeItem(key);
 }
 
 function applyRawJson(raw, { source = "Override", store = false } = {}){
@@ -370,7 +381,8 @@ function bindAdminUI(){
   });
 
   adminExportBtn.addEventListener("click", () => {
-    downloadJson("menu.json", MENU);
+    const restaurantId = RESTAURANT?.id || "menu";
+    downloadJson(`menu__${restaurantId}.json`, MENU);
   });
 
   adminCopyBtn.addEventListener("click", async () => {
