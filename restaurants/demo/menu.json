@@ -14,7 +14,7 @@
       "name": "Hamburguesa Rica Rica",
       "price": 25900,
       "desc": "Colocá el plato en tu mesa/piso con AR. Luego activá la ficha para ver ingredientes y peso.",
-      "model": "./models/demo/hamburguesa.glb",
+      "model": "./restaurants/demo/models/hamburguesa.glb",
       "viewer": {
         "scale": "0.9 0.9 0.9"
       },
@@ -32,7 +32,7 @@
       "name": "Papas Fritas Clásicas",
       "price": 9900,
       "desc": "Papas doradas y crocantes.",
-      "model": "./models/demo/papafritas.glb",
+      "model": "./restaurants/demo/models/papafritas.glb",
       "viewer": {
         "scale": "1.15 1.15 1.15",
         "cameraOrbit": "0deg 70deg 1.45m"
@@ -49,7 +49,7 @@
       "name": "Pizza Jamón y Queso",
       "price": 18900,
       "desc": "Porción generosa, ideal para compartir.",
-      "model": "./models/demo/pizzajamon.glb",
+      "model": "./restaurants/demo/models/pizzajamon.glb",
       "viewer": {
         "scale": "1 1 1",
         "cameraOrbit": "0deg 75deg 1.6m"
